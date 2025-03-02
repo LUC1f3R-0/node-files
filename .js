@@ -91,3 +91,4 @@
 // writeFileSync(); // Writes the file synchronously
 // console.log('End');
 
+const name = 'I commit this';
