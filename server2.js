@@ -1,30 +1,37 @@
 const http = require('http');
-const { request } = require('https');
-
+const { emitWarning } = require('process');
 
 const port = 5000;
 const host = 'localhost';
 
-
 const server = http.createServer((request, response) => {
     if (request.url === '/') {
         response.end(`
-            <h1>Home page</h1>
-            <a href='/about'>about</a>
-            `);
+            <h1>home page</h1>
+            <a href="/about">about Page</a>
+            <a href="/contact">contact Page</a>
+            `)
     } else if (request.url === '/about') {
         response.end(`
-            <h1>about page</h1>
-            <a href="/">home</a>
+            <h1>About Page</h1>
+            <a href="/">Home page</a>
+            <a href="/contact">contact Page</a>
+            `);
+    } else if (request.url === '/contact') {
+        response.end(`
+            <h1>Contact Page</h1>
+            <a href="/">Home page</a>
+            <a href="/about">about Page</a>
             `);
     } else {
         response.end(
-            `<p><u>ERROR: 404</u> Can't find the files.</p>`
+            `<h1>404 ERROR:</h1>
+             can find the page
+            <a href="/">Home page</a>`
         );
     }
 })
 
-
 server.listen(port, host, () => {
-    console.log(`server running on http://${host}:${port}`);
-})
+    console.log(`server running in http://${host}:${port}`);
+});
